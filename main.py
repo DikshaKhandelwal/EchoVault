@@ -13,9 +13,8 @@ from ai_utils import cosine_sim, embed_text, summarize_text
 from storage import get_all, get_by_path, update_last_used, upsert_file
 from watcher import diff_with_db, scan_folder, suggest_archive
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
-
 
 app = FastAPI(title="EchoVault API")
 app.add_middleware(
@@ -119,6 +118,35 @@ def recall(req: RecallReq) -> Dict[str, Any]:
     for t in top:
         update_last_used(t["path"])
     return {"results": top}
+
+
+@app.post("/chat")
+def chat(req: RecallReq) -> Dict[str, Any]:
+    """RAG-based chat: answer questions using file contents"""
+    from ai_utils import chat_with_context
+    
+    # Get top relevant files
+    query_emb = embed_text(req.query)
+    items = get_all()
+    scored = []
+    for r in items:
+        sim = cosine_sim(query_emb, r["embedding"]) if r["embedding"] else 0.0
+        scored.append((sim, r))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    
+    # Build contexts for RAG
+    contexts = []
+    for _, r in scored[:5]:
+        fname = os.path.basename(r["path"])
+        summary = r.get("summary", "")
+        content = r.get("content", "")[:1000]  # snippet
+        contexts.append((fname, summary, content))
+    
+    if not contexts:
+        return {"answer": "No files found to answer this question."}
+    
+    answer = chat_with_context(req.query, contexts)
+    return {"answer": answer, "sources": [c[0] for c in contexts]}
 
 
 @app.get("/sync")

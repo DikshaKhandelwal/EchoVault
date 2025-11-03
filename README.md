@@ -1,9 +1,9 @@
-# 🧠 EchoVault
+# EchoVault
 
 ### *Don't just store files. Remember why they exist.*
 
 [![Code Olympics](https://img.shields.io/badge/Code_Olympics-2025-00e5ff?style=for-the-badge)](https://github.com)
-[![Lines of Code](https://img.shields.io/badge/Lines-532%2F650-7cffb2?style=for-the-badge)](https://github.com)
+[![Lines of Code](https://img.shields.io/badge/Lines-640%2F650-7cffb2?style=for-the-badge)](https://github.com)
 [![Status](https://img.shields.io/badge/Status-Ready-00e5ff?style=for-the-badge)](https://github.com)
 
 > **An AI-powered file management system that transforms how you organize, search, and maintain your digital documents.**
@@ -17,7 +17,7 @@
 | Constraint | Requirement | Our Solution | Status |
 |------------|-------------|--------------|--------|
 | **Simple-State Creator** | 2-3 different modes/states | **3 Modes**: Ingest, Recall, Sync | ✅ **PASS** |
-| **Enterprise Creator** | ≤ 650 lines maximum | **532 lines** (118 under limit) | ✅ **PASS** |
+| **Enterprise Creator** | ≤ 650 lines maximum | **640 lines** (10 under limit) | ✅ **PASS** |
 | **Project Domain** | File Management | Organizer + Reader + Processor | ✅ **PASS** |
 
 ### 📊 Verify Line Count Yourself
@@ -26,15 +26,15 @@
 # Run this command to verify we're under the 650 line limit
 find . -maxdepth 1 -name "*.py" -exec wc -l {} + | tail -1
 
-# Expected output: 532 total (or less)
+# Expected output: 640 total (or less)
 ```
 
 **Breakdown:**
-- `main.py`: ~145 lines (FastAPI backend)
-- `frontend.py`: ~155 lines (Streamlit UI with gaming theme)
-- `storage.py`: ~130 lines (File metadata & storage)
-- `ai_utils.py`: ~80 lines (OpenAI integration)
-- `watcher.py`: ~40 lines (Folder scanning)
+- `main.py`: ~168 lines (FastAPI backend with RAG endpoint)
+- `frontend.py`: ~191 lines (Streamlit UI with gaming theme)
+- `storage.py`: ~138 lines (File metadata & storage)
+- `ai_utils.py`: ~98 lines (OpenAI integration + RAG)
+- `watcher.py`: ~45 lines (Folder scanning)
 
 ---
 
@@ -54,17 +54,27 @@ find . -maxdepth 1 -name "*.py" -exec wc -l {} + | tail -1
 
 ---
 
-### 2️⃣ **RECALL MODE** - Semantic Search
-*Find files using natural language, not just keywords*
+### 2️⃣ **RECALL MODE** - Semantic Search & AI Chat
+*Find files using natural language OR ask questions about your documents*
 
-**Features:**
+**Two Interaction Modes:**
+
+#### 🔍 **Search Mode**
 - 💬 Natural language queries ("meeting notes about project timeline")
 - 🎯 Semantic similarity search using embeddings
 - 📊 Relevance scoring with memory aging
 - 📝 View AI-generated summaries
 - 🏷️ Auto-tagged results
 
-**Use Case:** "Show me client reports from Q3" or "technical documentation about API"
+#### 💬 **Chat Mode** (RAG - Retrieval Augmented Generation)
+- 🤖 Ask questions across all your documents
+- 📚 Get AI-generated answers with source citations
+- 🔗 Multi-file context understanding
+- ✨ Conversational Q&A over your file collection
+
+**Use Cases:** 
+- Search: "Show me client reports from Q3" or "technical documentation about API"
+- Chat: "What are the main risks in our Q4 plan?" or "Summarize key decisions from last month"
 
 ---
 
@@ -213,15 +223,15 @@ For comprehensive testing scenarios, see:
 │                 FASTAPI BACKEND                          │
 │  ┌─────────────────────────────────────────────────┐   │
 │  │  /ingest/upload  │  /ingest/folder              │   │
-│  │  /recall         │  /sync                        │   │
-│  │  /files          │                               │   │
+│  │  /recall         │  /chat (RAG)                 │   │
+│  │  /sync           │  /files                      │   │
 │  └─────────────────────────────────────────────────┘   │
 └──────────┬─────────────────────────────┬────────────────┘
            │                             │
     ┌──────▼──────┐             ┌────────▼───────┐
     │   STORAGE   │             │   AI UTILS     │
     │  metadata   │             │   OpenAI API   │
-    │  embeddings │             │   Embeddings   │
+    │  embeddings │             │  RAG Context   │
     └─────────────┘             └────────────────┘
 ```
 
@@ -233,8 +243,9 @@ For comprehensive testing scenarios, see:
 |-----------|-----------|---------|
 | **Backend** | FastAPI | High-performance REST API |
 | **Frontend** | Streamlit | Interactive web interface |
-| **AI** | OpenAI GPT-4o-mini | Summarization & tagging |
+| **AI** | OpenAI GPT-4o-mini | Summarization, tagging & RAG |
 | **Embeddings** | text-embedding-3-small | Semantic search |
+| **RAG** | Custom implementation | Conversational Q&A over files |
 | **File Processing** | PyPDF2, python-docx | Text extraction |
 | **Storage** | JSON (filesystem) | Lightweight metadata store |
 

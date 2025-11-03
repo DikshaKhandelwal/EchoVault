@@ -60,3 +60,39 @@ def cosine_sim(a: List[float], b: List[float]) -> float:
         return 0.0
     return float(np.dot(va, vb) / denom)
 
+
+def chat_with_context(question: str, contexts: List[Tuple[str, str, str]]) -> str:
+    """
+    RAG-based Q&A using retrieved file contexts.
+    contexts: List of (filename, summary, content_snippet)
+    Returns: AI-generated answer with source citations
+    """
+    client = _client()
+    
+    # Build context from top retrieved files
+    context_text = "\n\n".join([
+        f"[Source: {fname}]\n{summary}\nContent: {content[:800]}"
+        for fname, summary, content in contexts[:5]
+    ])
+    
+    system_prompt = (
+        "You are an intelligent assistant helping users find information in their files. "
+        "Answer the question based ONLY on the provided file contexts. "
+        "Always cite which file(s) you're referencing. "
+        "If the answer isn't in the contexts, say so clearly."
+    )
+    
+    user_prompt = f"QUESTION: {question}\n\nCONTEXTS:\n{context_text}"
+    
+    resp = client.chat.completions.create(
+        model=GPT_MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.3,
+        max_tokens=500,
+    )
+    
+    return resp.choices[0].message.content.strip()
+

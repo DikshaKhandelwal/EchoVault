@@ -33,6 +33,7 @@ def neon_theme():
         .stButton>button{background:linear-gradient(135deg,#00e5ff,#7cffb2)!important;color:#0a0e1a!important;border:none!important;box-shadow:0 0 25px #00e5ff88,inset 0 0 10px rgba(255,255,255,.3)!important;font:700 20px 'Rajdhani'!important;padding:14px 28px!important;letter-spacing:1px!important;transition:all .3s!important;}
         .stButton>button:hover{transform:scale(1.05)!important;box-shadow:0 0 35px #00e5ff!important;}
         .stTextInput>div>div>input,.stTextArea textarea{background:#0f1829!important;color:#fff!important;border:2px solid #00e5ff55!important;font:600 18px 'Rajdhani'!important;box-shadow:inset 0 0 10px rgba(0,229,255,.1);}
+        .stTextInput>div>div>input::placeholder,.stTextArea textarea::placeholder{color:#a0a0a0!important;opacity:1!important;}
         .stTextInput>div>div>input:focus,.stTextArea textarea:focus{border-color:#00e5ff!important;box-shadow:0 0 15px #00e5ff66!important;}
         .stTextInput label,.stTextArea label,.stSlider label,.stFileUploader label{color:#ffffff!important;font:700 18px 'Rajdhani'!important;}
         .stSlider [role="slider"]{background:#00e5ff!important;box-shadow:0 0 15px #00e5ff;}
@@ -41,6 +42,14 @@ def neon_theme():
         .stTabs [data-baseweb="tab-list"]{gap:16px;}
         .stTabs [data-baseweb="tab"]{background:#1a0b2e!important;color:#00e5ff!important;font:700 20px 'Rajdhani'!important;border:2px solid #00e5ff55!important;border-radius:8px!important;padding:12px 24px!important;}
         .stTabs [aria-selected="true"]{background:linear-gradient(90deg,#00e5ff,#7cffb2)!important;color:#0a0e1a!important;box-shadow:0 0 20px #00e5ff88;}
+        .stRadio [role="radiogroup"]{display:flex!important;gap:20px!important;}
+        .stRadio [role="radiogroup"] label{font:700 22px 'Rajdhani'!important;color:#00e5ff!important;padding:12px 28px!important;border-radius:12px!important;border:2px solid #00e5ff55!important;background:rgba(0,229,255,.1)!important;transition:all .3s!important;cursor:pointer!important;}
+        .stRadio [role="radiogroup"] label:hover{background:rgba(0,229,255,.25)!important;border-color:#00e5ff!important;transform:scale(1.05)!important;}
+        .stRadio [role="radiogroup"] label[data-checked="true"]{background:linear-gradient(90deg,#00e5ff,#7cffb2)!important;color:#0a0e1a!important;font-weight:900!important;box-shadow:0 0 20px rgba(0,229,255,.8)!important;border-color:#7cffb2!important;}
+        .stRadio [role="radiogroup"] label[data-checked="true"] span{color:#0a0e1a!important;}
+        .stRadio [role="radiogroup"] label span{color:#00e5ff!important;}
+        .stRadio [role="radiogroup"] label div{color:#00e5ff!important;}
+        .stRadio [role="radiogroup"] label p{color:#00e5ff!important;}
         .result-card{border:2px solid #00e5ff66!important;padding:20px!important;border-radius:12px!important;background:linear-gradient(135deg,#0f1829,#1a0b2e)!important;box-shadow:0 0 25px #00e5ff33!important;margin-bottom:16px!important;font-size:18px!important;color:#ffffff!important;}
         .result-card b{color:#7cffb2!important;font-size:22px!important;text-shadow:0 0 10px #7cffb288;}
         .result-card pre{color:#ffffff!important;background:transparent!important;border:none!important;padding:12px 0!important;}
@@ -103,20 +112,48 @@ def ingest_ui():
 
 def recall_ui():
     st.subheader("Recall")
-    query = st.text_input("Ask EchoVault", placeholder="show me client reports from July")
-    col1, col2 = st.columns(2)
-    with col1:
-        k = st.slider("Top-K", 1, 15, 5)
-    with col2:
-        decay = st.slider("Memory aging (days)", 7, 365, 120)
-    if st.button("Search", use_container_width=True) and query.strip():
-        with st.spinner("Thinking..."):
-            r = requests.post(f"{API_BASE}/recall", json={"query": query, "top_k": k, "decay_days": decay})
-        if not r.ok:
-            st.error(r.text)
-            return
-        for item in r.json().get("results", []):
-            st.markdown(f"<div class='result-card'><b>{item['path']}</b><br/><small>score {item['score']}</small><br/><pre style='white-space:pre-wrap'>{item['summary']}</pre>" + " ".join([f"<span class='tag'>#{t}</span>" for t in item.get("tags", [])]) + "</div>", unsafe_allow_html=True)
+    
+    # Toggle between Search and Chat modes
+    recall_mode = st.radio("", ["Search", "Chat"], horizontal=True, label_visibility="collapsed")
+    
+    if recall_mode == "Search":
+        query = st.text_input("Ask EchoVault", placeholder="show me client reports from July")
+        col1, col2 = st.columns(2)
+        with col1:
+            k = st.slider("Top-K", 1, 15, 5)
+        with col2:
+            decay = st.slider("Memory aging (days)", 7, 365, 120)
+        if st.button("Search", use_container_width=True) and query.strip():
+            with st.spinner("Thinking..."):
+                r = requests.post(f"{API_BASE}/recall", json={"query": query, "top_k": k, "decay_days": decay})
+            if not r.ok:
+                st.error(r.text)
+                return
+            for item in r.json().get("results", []):
+                st.markdown(f"<div class='result-card'><b>{item['path']}</b><br/><small>score {item['score']}</small><br/><pre style='white-space:pre-wrap'>{item['summary']}</pre>" + " ".join([f"<span class='tag'>#{t}</span>" for t in item.get("tags", [])]) + "</div>", unsafe_allow_html=True)
+    
+    else:  # Chat mode
+        st.markdown("Ask questions and get answers from your ingested documents!")
+        question = st.text_area("Ask a question", placeholder="What are the key findings in the Q4 report?", height=100)
+        
+        if st.button("Ask", use_container_width=True) and question.strip():
+            with st.spinner("Analyzing files..."):
+                r = requests.post(f"{API_BASE}/chat", json={"query": question, "top_k": 5})
+            
+            if not r.ok:
+                st.error(r.text)
+                return
+            
+            data = r.json()
+            answer = data.get("answer", "")
+            sources = data.get("sources", [])
+            
+            st.markdown(f"<div class='result-card'><b>🤖 Answer:</b><br/><pre style='white-space:pre-wrap'>{answer}</pre></div>", unsafe_allow_html=True)
+            
+            if sources:
+                st.markdown("<b style='color:#00e5ff'>📚 Sources:</b>", unsafe_allow_html=True)
+                for src in sources:
+                    st.markdown(f"<span class='tag'>📄 {src}</span>", unsafe_allow_html=True)
 
 
 def sync_ui():
