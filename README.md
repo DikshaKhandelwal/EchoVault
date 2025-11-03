@@ -93,6 +93,24 @@ wc -l *.py
 **Use Case:** Clean up old projects, manage multiple workspaces, identify stale files
 
 ---
+## 📸 Screenshots
+
+### **1. Ingest Mode**
+![1-Ingest](screenshots/1.png)
+*Upload files or scan folders with AI processing*
+
+### **2. Recall Mode - Semantic Search**
+ ![2-Recall-Search](screenshots/2.png)
+*Natural language search with relevance scoring and summaries*
+
+### **3. Recall Mode - RAG Chat**
+ ![3-Recall-Chat](screenshots/3.png)
+*Ask questions and get AI answers with source citations*
+
+### **4. Sync Mode**
+![4-Sync](screenshots/4.png)
+*Compare folders and get archive suggestions for old files*
+
 
 ## 🚀 Quick Start Guide
 
@@ -186,27 +204,7 @@ For comprehensive testing scenarios, see:
 
 ---
 
-## 📸 Screenshots
 
-### **1. Ingest Mode**
-![1-Ingest](screenshots/1.png)
-*Upload files or scan folders with AI processing*
-
-### **2. Recall Mode - Semantic Search**
- ![2-Recall-Search](screenshots/2.png)
-*Natural language search with relevance scoring and summaries*
-
-### **3. Recall Mode - RAG Chat**
- ![3-Recall-Chat](screenshots/3.png)
-*Ask questions and get AI answers with source citations*
-
-### **4. Sync Mode**
-![4-Sync](screenshots/4.png)
-*Compare folders and get archive suggestions for old files*
-
-> **Note**: Add screenshots to `screenshots/` folder and uncomment the image links above
-
----
 
 ## 🏗️ Architecture
 
@@ -284,7 +282,7 @@ httpx==0.27.0
 
 ## 🎯 Challenge Success Criteria
 
-| Criteria | Our Implementation | ✓ |
+| Criteria | Implementation | ✓ |
 |----------|-------------------|---|
 | **3 Distinct Modes** | Ingest, Recall, Sync | ✅ |
 | **State Management** | Each mode isolated, clear transitions | ✅ |
