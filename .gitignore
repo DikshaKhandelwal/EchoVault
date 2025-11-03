@@ -40,7 +40,8 @@ env/
 .DS_Store
 
 # Streamlit
-.streamlit/
+.streamlit/secrets.toml
+!.streamlit/config.toml
 
 # Data Files (generated at runtime)
 data/
