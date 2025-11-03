@@ -189,19 +189,19 @@ For comprehensive testing scenarios, see:
 ## 📸 Screenshots
 
 ### **1. Ingest Mode**
-<!-- ![1-Ingest](screenshots/1.png) -->
+![1-Ingest](screenshots/1.png)
 *Upload files or scan folders with AI processing*
 
 ### **2. Recall Mode - Semantic Search**
-<!-- ![2-Recall-Search](screenshots/2.png) -->
+ ![2-Recall-Search](screenshots/2.png)
 *Natural language search with relevance scoring and summaries*
 
 ### **3. Recall Mode - RAG Chat**
-<!-- ![3-Recall-Chat](screenshots/3.png) -->
+ ![3-Recall-Chat](screenshots/3.png)
 *Ask questions and get AI answers with source citations*
 
 ### **4. Sync Mode**
-<!-- ![4-Sync](screenshots/4.png) -->
+![4-Sync](screenshots/4.png)
 *Compare folders and get archive suggestions for old files*
 
 > **Note**: Add screenshots to `screenshots/` folder and uncomment the image links above
