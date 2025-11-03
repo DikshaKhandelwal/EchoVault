@@ -1,0 +1,69 @@
+VENDOR CONTRACT - CLOUDSERVICES INC
+====================================
+
+Contract ID: VND-2024-003
+Vendor: CloudServices Inc.
+Contract Period: January 1, 2024 - December 31, 2024
+Status: EXPIRED & TERMINATED EARLY
+
+CONTRACT DETAILS
+----------------
+Service: Cloud Infrastructure Hosting
+Monthly Cost: $8,500
+Annual Value: $102,000
+Payment Terms: Net 30
+
+SERVICES PROVIDED
+-----------------
+- Virtual Machine Hosting (50 instances)
+- Database Hosting (PostgreSQL, MongoDB)
+- Load Balancing
+- CDN Services
+- Backup & Recovery
+- 24/7 Support
+
+TERMINATION DETAILS
+-------------------
+Early Termination Date: June 30, 2024
+Reason: Migrated to AWS for better pricing
+Final Payment: July 15, 2024
+Total Paid: $51,000 (6 months)
+
+MIGRATION NOTES
+---------------
+All services successfully migrated to AWS on June 25, 2024.
+No downtime during transition.
+New AWS contract saves $3,200/month (38% reduction).
+
+OUTSTANDING ITEMS
+-----------------
+✓ Final invoice paid
+✓ All data exported
+✓ Account closed
+✓ Access credentials revoked
+✓ DNS records updated
+
+LESSONS LEARNED
+---------------
+- Annual contracts should have flexibility clauses
+- Regular market comparison could have saved money earlier
+- Migration planning was excellent and should be template
+- Vendor was cooperative during termination process
+
+FINAL RECONCILIATION
+--------------------
+Contract Value: $102,000
+Amount Paid: $51,000
+Termination Fee: $0 (waived by vendor)
+Refund Received: $0
+
+CONTACTS (NO LONGER ACTIVE)
+---------------------------
+Account Manager: John Smith (john@cloudservices.com)
+Technical Support: support@cloudservices.com
+Billing: billing@cloudservices.com
+
+CONTRACT CLOSED: July 31, 2024
+LAST ACCESSED: August 5, 2024
+STATUS: HISTORICAL RECORD - CAN BE ARCHIVED
+RETENTION REQUIRED: 7 years for financial audit

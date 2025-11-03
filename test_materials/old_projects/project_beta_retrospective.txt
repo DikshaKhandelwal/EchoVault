@@ -1,0 +1,59 @@
+PROJECT BETA - RETROSPECTIVE
+=============================
+
+Project Timeline: February - May 2024
+Status: COMPLETED - NEEDS REVIEW
+Project Manager: David Kim
+
+OVERVIEW
+--------
+Project Beta encountered several challenges but ultimately delivered
+a working solution. This retrospective documents what went wrong
+and how we can improve future projects.
+
+CHALLENGES FACED
+----------------
+1. Scope creep - Requirements changed 3 times mid-project
+2. Resource constraints - Lost 2 developers in April
+3. Technical debt - Had to refactor legacy code
+4. Integration issues - Third-party API problems
+5. Timeline delays - Delivered 3 weeks late
+
+BUDGET IMPACT
+-------------
+Original Budget: $200,000
+Final Cost: $245,000
+Overrun: $45,000 (22.5%)
+
+WHAT WENT WRONG
+---------------
+- Insufficient initial planning
+- Unclear requirements from stakeholder
+- Lack of buffer time for contingencies
+- Poor communication with third-party vendor
+- Technical architecture decisions made too quickly
+
+WHAT WENT RIGHT
+---------------
+- Team stayed motivated despite setbacks
+- Client remained supportive throughout delays
+- Final product quality exceeded expectations
+- Post-launch performance has been excellent
+- No major bugs reported in first month
+
+RECOMMENDATIONS FOR FUTURE
+---------------------------
+1. More thorough requirement gathering phase
+2. Build contingency time into all estimates
+3. Better vendor evaluation process
+4. Regular architecture review meetings
+5. Stricter change management process
+
+CLIENT FEEDBACK
+---------------
+Despite delays, client rated final product 8.5/10
+Said they would work with us again
+
+PROJECT CLOSED: June 15, 2024
+LAST ACCESSED: June 20, 2024
+STATUS: LESSONS LEARNED - CAN ARCHIVE

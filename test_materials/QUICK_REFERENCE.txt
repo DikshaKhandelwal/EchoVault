@@ -1,0 +1,90 @@
+╔════════════════════════════════════════════════════════════════╗
+║           ECHOVAULT - QUICK TESTING REFERENCE                  ║
+╚════════════════════════════════════════════════════════════════╝
+
+📍 LOCATION: D:\echovault\test_materials\
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 TESTING PATHS (Copy & Paste Ready)
+
+  Ingest Mode - Folder Scan:
+  D:\echovault\test_materials\sample_files
+
+  Sync Mode - Folder A:
+  D:\echovault\test_materials\folder_a
+
+  Sync Mode - Folder B:
+  D:\echovault\test_materials\folder_b
+
+  Archive Testing - Old Projects:
+  D:\echovault\test_materials\old_projects
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 SAMPLE SEARCH QUERIES
+
+  1. "budget and financial information"
+  2. "meeting decisions and action items"  
+  3. "technical architecture and API"
+  4. "code review feedback"
+  5. "user guide and documentation"
+  6. "project timeline"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 WHAT'S IN EACH FOLDER
+
+  sample_files/ (5 files)
+  ├─ project_proposal.txt   → Business doc with budget
+  ├─ meeting_notes.txt      → Team sync with action items
+  ├─ technical_spec.md      → Architecture & API docs
+  ├─ code_review.txt        → Code quality assessment
+  └─ user_guide.md          → Usage instructions
+
+  folder_a/ (4 files)
+  ├─ financial_report_q4.txt  → Original version
+  ├─ marketing_strategy.txt   → Unique to A
+  ├─ product_roadmap.txt      → Will be duplicate
+  └─ team_roster.txt          → Unique to A
+
+  folder_b/ (4 files)
+  ├─ financial_report_q4.txt    → Modified version ⚠️
+  ├─ product_roadmap.txt        → Exact duplicate ✓
+  ├─ client_list.txt            → Unique to B
+  └─ compliance_checklist.txt   → Unique to B
+
+  old_projects/ (5 files) 🗄️
+  ├─ project_alpha_final.txt        → Completed Mar 2024
+  ├─ project_beta_retrospective.txt → Completed Jun 2024
+  ├─ quarterly_report_q1_2024.txt   → Historical Q1 2024
+  ├─ vendor_contract_cloudservices.txt → Expired contract
+  └─ legacy_decommission_plan.txt   → Decommissioned May 2024
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 5-MINUTE SMOKE TEST
+
+  ✓ Ingest: Upload sample_files/project_proposal.txt
+  ✓ Recall: Search "budget information"
+  ✓ Sync: Compare folder_a vs folder_b
+  ✓ Archive: Ingest old_projects, set threshold to 1 day
+  
+  Expected: All 3 modes work without errors!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎪 EXPECTED SYNC RESULTS
+
+  Unique to A: marketing_strategy.txt, team_roster.txt
+  Unique to B: client_list.txt, compliance_checklist.txt  
+  Common: financial_report_q4.txt ⚠️ (modified)
+          product_roadmap.txt ✓ (duplicate)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 READ FULL TESTING GUIDES:
+   D:\echovault\test_materials\TESTING_GUIDE.md
+   D:\echovault\test_materials\SCENARIO_2_ARCHIVE_TESTING.txt
+
+╚════════════════════════════════════════════════════════════════╝

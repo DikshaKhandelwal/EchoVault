@@ -1,0 +1,22 @@
+CLIENT LIST 2025
+================
+
+Enterprise Clients:
+1. TechCorp Industries - $250K/year
+2. Global Finance Inc - $180K/year
+3. Healthcare Solutions - $150K/year
+4. Education Platform Co - $120K/year
+
+Mid-Market Clients:
+5. StartupHub - $50K/year
+6. Design Studio Pro - $45K/year
+7. Legal Services Group - $40K/year
+8. Consulting Partners - $35K/year
+
+Small Business:
+9. Local Bakery Chain - $10K/year
+10. Fitness Center Network - $8K/year
+
+Total ARR: $888K
+Client Count: 10
+Average Deal Size: $88.8K

@@ -1,0 +1,236 @@
+╔══════════════════════════════════════════════════════════════════╗
+║          DEMO VIDEO SETUP - PERFECT SYNC MODE SHOWCASE           ║
+╚══════════════════════════════════════════════════════════════════╝
+
+🎥 GOAL: Show all Sync Mode features clearly for demo video
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 DEMO SCRIPT - OPTION 1: CLEAN SLATE APPROACH
+
+PREPARATION (Before Recording)
+-------------------------------
+1. Delete the database to start fresh:
+   - Delete file: D:\echovault\data\metadata.json
+   - Or delete entire folder: D:\echovault\data\
+   
+2. Restart backend:
+   - Stop current backend (Ctrl+C)
+   - Run: D:/echovault/.venv/Scripts/python.exe main.py
+
+3. Refresh frontend (F5 in browser)
+
+
+SCENE 1: DEMONSTRATE "ADD" FILES (00:00-01:00)
+-----------------------------------------------
+What to show: New files that need to be ingested
+
+1. Go to "Sync Mode"
+2. Enter: D:\echovault\test_materials\sample_files
+3. Set archive days: 60
+4. Click "Analyze"
+
+✅ EXPECTED RESULT:
+   {
+     "add": [
+       "...sample_files/code_review.txt",
+       "...sample_files/meeting_notes.txt",
+       "...sample_files/project_proposal.txt",
+       "...sample_files/technical_spec.md",
+       "...sample_files/user_guide.md"
+     ],
+     "update": [],
+     "remove": []
+   }
+
+📹 NARRATION: "Sync detects 5 new files that aren't in our system yet"
+
+
+SCENE 2: INGEST THE FILES (01:00-01:30)
+----------------------------------------
+1. Go to "Ingest Mode"
+2. Enter: D:\echovault\test_materials\sample_files
+3. Click "Ingest Folder"
+4. Wait for success message
+
+📹 NARRATION: "Let's ingest these files into EchoVault"
+
+
+SCENE 3: DEMONSTRATE "NO CHANGES" (01:30-02:00)
+------------------------------------------------
+1. Go back to "Sync Mode"
+2. Same folder: D:\echovault\test_materials\sample_files
+3. Click "Analyze" again
+
+✅ EXPECTED RESULT:
+   {
+     "add": [],
+     "update": [],
+     "remove": []
+   }
+
+📹 NARRATION: "Now everything is in sync - no changes detected"
+
+
+SCENE 4: DEMONSTRATE "UPDATE" FILES (02:00-03:00)
+--------------------------------------------------
+What to show: Modified files
+
+1. Open: D:\echovault\test_materials\sample_files\meeting_notes.txt
+2. Add a new line at the end: "UPDATE: New action item added!"
+3. Save and close
+4. Go to "Sync Mode"
+5. Click "Analyze"
+
+✅ EXPECTED RESULT:
+   {
+     "add": [],
+     "update": [
+       "...sample_files/meeting_notes.txt"
+     ],
+     "remove": []
+   }
+
+📹 NARRATION: "I modified meeting_notes.txt - Sync detects the change!"
+
+
+SCENE 5: DEMONSTRATE "REMOVE" FILES (03:00-04:00)
+--------------------------------------------------
+What to show: Files deleted from disk
+
+1. Temporarily rename a file:
+   - Rename: meeting_notes.txt → meeting_notes_backup.txt
+   
+2. Go to "Sync Mode"
+3. Click "Analyze"
+
+✅ EXPECTED RESULT:
+   {
+     "add": [],
+     "update": [],
+     "remove": [
+       "...sample_files/meeting_notes.txt"
+     ]
+   }
+
+📹 NARRATION: "File was deleted/moved - Sync alerts us!"
+
+4. IMPORTANT: Rename it back for next scenes!
+   - meeting_notes_backup.txt → meeting_notes.txt
+
+
+SCENE 6: DEMONSTRATE ARCHIVE SUGGESTIONS (04:00-05:00)
+-------------------------------------------------------
+1. Ingest old projects:
+   - Go to "Ingest Mode"
+   - Folder: D:\echovault\test_materials\old_projects
+   - Click "Ingest Folder"
+
+2. Go to "Sync Mode"
+3. Enter: D:\echovault\test_materials\old_projects
+4. Set archive threshold: 1 day
+5. Click "Analyze"
+
+✅ EXPECTED RESULT:
+   {
+     "add": [],
+     "update": [],
+     "remove": []
+   }
+   
+   Archive suggestions: [
+     "...old_projects/project_alpha_final.txt",
+     "...old_projects/project_beta_retrospective.txt",
+     "...old_projects/quarterly_report_q1_2024.txt",
+     "...old_projects/vendor_contract_cloudservices.txt",
+     "...old_projects/legacy_decommission_plan.txt"
+   ]
+
+📹 NARRATION: "These 5 old project files haven't been accessed - 
+              ready for archiving!"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 DEMO SCRIPT - OPTION 2: SIDE-BY-SIDE COMPARISON
+
+ALTERNATIVE: Show folder_a vs folder_b comparison
+--------------------------------------------------
+
+1. Start fresh (delete data/ folder)
+
+2. Ingest folder_a ONLY:
+   - Ingest Mode → D:\echovault\test_materials\folder_a
+   
+3. Sync with folder_b:
+   - Sync Mode → D:\echovault\test_materials\folder_b
+   
+✅ EXPECTED RESULT:
+   {
+     "add": [
+       "...folder_b/client_list.txt",
+       "...folder_b/compliance_checklist.txt"
+     ],
+     "update": [
+       "...folder_b/financial_report_q4.txt"  (modified version)
+     ],
+     "remove": [
+       "...folder_a/marketing_strategy.txt",
+       "...folder_a/team_roster.txt"
+     ]
+   }
+
+📹 NARRATION: "Comparing project folders - folder_b has 2 new files,
+              1 modified file, and folder_a has 2 unique files"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 QUICK DEMO SEQUENCE (5 MINUTES)
+
+1. DELETE DATA (00:00)
+   → rm -rf data/
+
+2. SHOW ADD (00:30)
+   → Sync sample_files → Shows 5 files to add
+
+3. INGEST (01:30)
+   → Ingest sample_files
+
+4. SHOW SYNC (02:00)
+   → Sync again → Shows no changes
+
+5. SHOW UPDATE (02:30)
+   → Edit a file → Sync → Shows 1 update
+
+6. SHOW ARCHIVE (03:30)
+   → Ingest old_projects → Sync → Shows 5 archive suggestions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 PRO TIPS FOR VIDEO
+
+✓ Use full screen for Streamlit interface
+✓ Increase browser zoom to 125% for better visibility
+✓ Clear browser cache before recording
+✓ Have all folder paths ready to copy-paste
+✓ Rehearse the sequence once before recording
+✓ Keep narration clear and concise
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎬 COMMANDS TO RESET FOR RECORDING
+
+# Stop backend
+Ctrl+C in backend terminal
+
+# Delete database
+rm -rf D:/echovault/data/
+
+# Start fresh backend
+cd /d/echovault && D:/echovault/.venv/Scripts/python.exe main.py
+
+# In another terminal, start frontend
+cd /d/echovault && D:/echovault/.venv/Scripts/python.exe -m streamlit run frontend.py
+
+# Now you're ready to record! 🎥
+
+╚══════════════════════════════════════════════════════════════════╝

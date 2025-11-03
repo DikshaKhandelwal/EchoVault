@@ -1,0 +1,22 @@
+TEAM ROSTER 2025
+================
+
+Engineering Team:
+- Sarah Chen (Lead Engineer)
+- Mike Rodriguez (Backend Developer)
+- Alex Thompson (Frontend Developer)
+- Jamie Lee (QA Engineer)
+
+Product Team:
+- David Kim (Product Manager)
+- Lisa Wang (Product Designer)
+
+Marketing Team:
+- Tom Brown (Marketing Director)
+- Emily Davis (Content Manager)
+
+Operations:
+- Rachel Green (Operations Manager)
+- John Smith (Customer Support)
+
+Total Headcount: 10
