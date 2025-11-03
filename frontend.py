@@ -4,11 +4,7 @@ from typing import List
 
 import requests
 import streamlit as st
-
-
 API_BASE = os.getenv("ECHOVAULT_API", "http://localhost:8000")
-
-
 def neon_theme():
     st.set_page_config(page_title="EchoVault", layout="wide")
     st.markdown(
@@ -133,7 +129,7 @@ def recall_ui():
                 st.markdown(f"<div class='result-card'><b>{item['path']}</b><br/><small>score {item['score']}</small><br/><pre style='white-space:pre-wrap'>{item['summary']}</pre>" + " ".join([f"<span class='tag'>#{t}</span>" for t in item.get("tags", [])]) + "</div>", unsafe_allow_html=True)
     
     else:  # Chat mode
-        st.markdown("Ask questions and get answers from your ingested documents!")
+        st.markdown("<p style='color:#a0a0a0;font-size:18px;'>Ask questions and get answers from your ingested documents!</p>", unsafe_allow_html=True)
         question = st.text_area("Ask a question", placeholder="What are the key findings in the Q4 report?", height=100)
         
         if st.button("Ask", use_container_width=True) and question.strip():
@@ -171,7 +167,7 @@ def sync_ui():
         st.json(data.get("diff", {}))
         st.write("Archive candidates")
         for p in data.get("archive_suggestions", []):
-            st.markdown(f"<span class='tag'>archive</span> {p}", unsafe_allow_html=True)
+            st.markdown(f"<div style='margin:8px 0;'><span class='tag'>archive</span> <span style='color:#ffffff;font-size:18px;'>{p}</span></div>", unsafe_allow_html=True)
 
 
 def main():

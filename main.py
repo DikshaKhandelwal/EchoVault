@@ -161,6 +161,13 @@ def list_files() -> Dict[str, Any]:
     return {"files": get_all()}
 
 
+@app.get("/demo/age-files")
+def age_demo_files(pattern: str = "old_projects", days: int = 90):
+    from watcher import age_files_for_demo
+    age_files_for_demo(pattern, days)
+    return {"status": "ok", "aged": pattern, "days": days}
+
+
 if __name__ == "__main__":
     import uvicorn
 

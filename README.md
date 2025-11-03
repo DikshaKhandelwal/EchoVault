@@ -3,7 +3,7 @@
 ### *Don't just store files. Remember why they exist.*
 
 [![Code Olympics](https://img.shields.io/badge/Code_Olympics-2025-00e5ff?style=for-the-badge)](https://github.com)
-[![Lines of Code](https://img.shields.io/badge/Lines-640%2F650-7cffb2?style=for-the-badge)](https://github.com)
+[![Lines of Code](https://img.shields.io/badge/Lines-649%2F650-7cffb2?style=for-the-badge)](https://github.com)
 [![Status](https://img.shields.io/badge/Status-Ready-00e5ff?style=for-the-badge)](https://github.com)
 
 > **An AI-powered file management system that transforms how you organize, search, and maintain your digital documents.**
@@ -17,24 +17,25 @@
 | Constraint | Requirement | Our Solution | Status |
 |------------|-------------|--------------|--------|
 | **Simple-State Creator** | 2-3 different modes/states | **3 Modes**: Ingest, Recall, Sync | ✅ **PASS** |
-| **Enterprise Creator** | ≤ 650 lines maximum | **640 lines** (10 under limit) | ✅ **PASS** |
+| **Enterprise Creator** | ≤ 650 lines maximum | **649 lines** (1 under limit) | ✅ **PASS** |
 | **Project Domain** | File Management | Organizer + Reader + Processor | ✅ **PASS** |
 
 ### 📊 Verify Line Count Yourself
 
 ```bash
 # Run this command to verify we're under the 650 line limit
-find . -maxdepth 1 -name "*.py" -exec wc -l {} + | tail -1
+wc -l *.py
 
-# Expected output: 640 total (or less)
+# Expected output: 649 total
 ```
 
 **Breakdown:**
-- `main.py`: ~168 lines (FastAPI backend with RAG endpoint)
-- `frontend.py`: ~191 lines (Streamlit UI with gaming theme)
-- `storage.py`: ~138 lines (File metadata & storage)
-- `ai_utils.py`: ~98 lines (OpenAI integration + RAG)
-- `watcher.py`: ~45 lines (Folder scanning)
+- `main.py`: 175 lines (FastAPI backend with RAG endpoint)
+- `frontend.py`: 187 lines (Streamlit UI with gaming theme)
+- `storage.py`: 138 lines (File metadata & storage)
+- `ai_utils.py`: 98 lines (OpenAI integration + RAG)
+- `watcher.py`: 51 lines (Folder scanning + demo helper)
+- **Total: 649 lines** (537 code lines excluding blanks/comments)
 
 ---
 
@@ -187,23 +188,23 @@ For comprehensive testing scenarios, see:
 
 ## 📸 Screenshots
 
-### **Main Interface**
-<!-- ![EchoVault Main Interface](screenshots/main-interface.png) -->
-*Gaming-style neon UI with purple sidebar and cyan accents*
-
-### **Ingest Mode**
-<!-- ![Ingest Mode](screenshots/ingest-mode.png) -->
+### **1. Ingest Mode**
+<!-- ![1-Ingest](screenshots/1.png) -->
 *Upload files or scan folders with AI processing*
 
-### **Recall Mode**
-<!-- ![Recall Mode](screenshots/recall-mode.png) -->
-*Semantic search with relevance scoring*
+### **2. Recall Mode - Semantic Search**
+<!-- ![2-Recall-Search](screenshots/2.png) -->
+*Natural language search with relevance scoring and summaries*
 
-### **Sync Mode**
-<!-- ![Sync Mode](screenshots/sync-mode.png) -->
-*Folder comparison and archive suggestions*
+### **3. Recall Mode - RAG Chat**
+<!-- ![3-Recall-Chat](screenshots/3.png) -->
+*Ask questions and get AI answers with source citations*
 
-> **Note**: Add screenshots to `screenshots/` folder after setup
+### **4. Sync Mode**
+<!-- ![4-Sync](screenshots/4.png) -->
+*Compare folders and get archive suggestions for old files*
+
+> **Note**: Add screenshots to `screenshots/` folder and uncomment the image links above
 
 ---
 
@@ -319,7 +320,7 @@ cat .env  # Should show OPENAI_API_KEY=sk-...
 
 ## 🎬 Demo Video Guide
 
-Follow `test_materials/DEMO_VIDEO_GUIDE.txt` for step-by-step recording instructions to showcase all features.
+Follow `https://drive.google.com/file/d/1SvaoARCcBBRga6K5NX1tRQgAAbmCALpN/view?usp=sharing` for step-by-step recording instructions to showcase all features.
 
 ---
 
@@ -328,14 +329,6 @@ Follow `test_materials/DEMO_VIDEO_GUIDE.txt` for step-by-step recording instruct
 Built for the **Code Olympics Challenge 2025** 🏅
 
 ---
-
-## 👨‍💻 Author
-
-**EchoVault Team**  
-*"Memory for your files, intelligence for your workflow"*
-
----
-
 ## 🙏 Acknowledgments
 
 - OpenAI for GPT-4o-mini and embeddings
